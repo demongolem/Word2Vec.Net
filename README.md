@@ -1,5 +1,5 @@
 # Word2Vec.Net
-Based on E. Abdullin's Word2Vec.Net port of Word2Vec forked on Jan 25, 2019.
+Based on Y. Abdullin's Word2Vec.Net port of Word2Vec forked on Jan 25, 2019.
 
 The reason that we push forward our own copy is that there are more advanced features we would like to make available:
 
