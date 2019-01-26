@@ -14,6 +14,9 @@ using System.Text;
 
 namespace Word2Vec.Net
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Distance : Word2VecAnalysisBase
     {
         /// <summary>
@@ -24,6 +27,75 @@ namespace Word2Vec.Net
         {
 
         }
+
+        private Distance(Distance that) :base(that)
+        {
+
+        }
+
+        /// <summary>
+        /// Add the m variable of two Distances, putting the answer into this copy's of m
+        /// </summary>
+        /// <param name="that"></param>
+        private void AddVector(Distance that)
+        {
+            int vectorLength1 = this.M.Length;
+            int vectorLength2 = that.M.Length;
+            if (vectorLength1 != vectorLength2)
+            {
+                return;
+            }
+            for (int index = 0; index < vectorLength1; index++)
+            {
+                this.M[index] += that.M[index];
+            }
+        }
+
+        /// <summary>
+        /// Subtracts the m variable of that from this, putting the answer into this copy's of m
+        /// </summary>
+        /// <param name="that"></param>
+        private void SubtractVector(Distance that)
+        {
+            int vectorLength1 = this.M.Length;
+            int vectorLength2 = that.M.Length;
+            if (vectorLength1 != vectorLength2)
+            {
+                return;
+            }
+            for (int index = 0; index < vectorLength1; index++)
+            {
+                this.M[index] -= that.M[index];
+            }
+        }
+
+        /// <summary>
+        /// Avergas the m variable of that and this, putting the answer into this copy's of m
+        /// </summary>
+        /// <param name="that"></param>
+        private void AverageVectors(Distance that)
+        {
+            int vectorLength1 = this.M.Length;
+            int vectorLength2 = that.M.Length;
+            if (vectorLength1 != vectorLength2)
+            {
+                return;
+            }
+            for (int index = 0; index < vectorLength1; index++)
+            {
+                this.M[index] = 0.5f * (this.M[index] + that.M[index]);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public float[] GetWordVector()
+        {
+            return this.M;
+        }
+
         /// <summary>
         /// search nearest words to <param name="intext"></param>
         /// </summary>
@@ -94,9 +166,18 @@ namespace Word2Vec.Net
 
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public struct BestWord
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string Word { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public float Distance { get; set; }
     }
 }

@@ -77,10 +77,29 @@ namespace Word2Vec.Net
         public Word2VecAnalysisBase(string fileName)
         {
             file_name = fileName;           //bestw = new string[N];
-            
-           
-            
+                             
             InitVocub();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="that"></param>
+        public Word2VecAnalysisBase(Word2VecAnalysisBase that)
+        {
+            this.size = that.size;
+            this.file_name = that.file_name;
+            this.words = that.words;
+            this.vocab = new char[that.vocab.Length];
+            for (int index = 0; index < that.vocab.Length; index++)
+            {
+                this.vocab[index] = that.vocab[index];
+            }
+            this.m = new float[that.m.Length];
+            for (int index = 0; index < that.m.Length; index++)
+            {
+                this.m[index] = that.m[index];
+            }
         }
 
         private void InitVocub()
